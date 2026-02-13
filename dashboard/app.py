@@ -124,12 +124,23 @@ if page == "Upload Data":
 
 if page == "Data View":
     st.header("Data Inspector")
-    if os.path.exists("data/raw/claims_sample.csv"):
-        df_raw = pd.read_csv("data/raw/claims_sample.csv")
-        st.write(f"Raw Data Shape: {df_raw.shape}")
+    
+    # Check for uploaded file first
+    uploaded_path = "data/raw/uploads/uploaded_claims.csv"
+    sample_path = "data/raw/claims_sample.csv"
+    
+    if os.path.exists(uploaded_path):
+        df_raw = pd.read_csv(uploaded_path)
+        st.success(f"Loaded Uploaded Data: {uploaded_path}")
+        st.write(f"Shape: {df_raw.shape}")
+        st.dataframe(df_raw.head(100))
+    elif os.path.exists(sample_path):
+        df_raw = pd.read_csv(sample_path)
+        st.info(f"Loaded Sample Data: {sample_path}")
+        st.write(f"Shape: {df_raw.shape}")
         st.dataframe(df_raw.head(100))
     else:
-        st.info("Raw data sample not found.")
+        st.warning("No data found. Please upload a file in the 'Upload Data' section.")
 
 if page == "Model Evaluation":
     st.header("Model Performance")
