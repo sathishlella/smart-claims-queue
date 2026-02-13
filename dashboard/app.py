@@ -11,16 +11,16 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
 def display_risk_metrics(df):
-    # Calculate Risk Tiers (Simple Thresholds on Priority Score)
-    high_risk = df[df['priority_score'] >= 0.7].shape[0]
-    med_risk = df[(df['priority_score'] >= 0.4) & (df['priority_score'] < 0.7)].shape[0]
-    low_risk = df[df['priority_score'] < 0.4].shape[0]
+    # Calculate Risk Tiers (Adjusted Thresholds)
+    high_risk = df[df['priority_score'] >= 0.6].shape[0]
+    med_risk = df[(df['priority_score'] >= 0.3) & (df['priority_score'] < 0.6)].shape[0]
+    low_risk = df[df['priority_score'] < 0.3].shape[0]
     
     st.subheader("Queue Overview")
     m1, m2, m3 = st.columns(3)
-    m1.metric("🔥 High Priority", high_risk, help="Score >= 0.7")
-    m2.metric("⚠️ Medium Priority", med_risk, help="0.4 <= Score < 0.7")
-    m3.metric("✅ Low Priority", low_risk, help="Score < 0.4")
+    m1.metric("🔥 High Priority", high_risk, help="Score >= 0.6")
+    m2.metric("⚠️ Medium Priority", med_risk, help="0.3 <= Score < 0.6")
+    m3.metric("✅ Low Priority", low_risk, help="Score < 0.3")
     
 st.set_page_config(page_title="Claims Denial Prediction", layout="wide")
 
