@@ -1,0 +1,48 @@
+defaults:
+  - _self_
+
+project:
+  name: "ClaimsDenialPrediction"
+  seed: 1337
+  experiment_name: "EXP_20260212_RUN001"
+
+data:
+  raw_path: "synthera835_claims_2026-02-12.csv"
+  processed_path: "data/processed/features.parquet"
+  split_path: "splits/split_v1.json"
+  n_records: 100000
+  test_size: 0.2
+  val_size: 0.1
+
+features:
+  numerical:
+    - "Billed Amount"
+    - "days_since_dos"
+  categorical:
+    - "Provider ID"
+    - "Insurance Type"
+    - "Procedure Code"
+    - "Diagnosis Code"
+  target: "Outcome"
+  drop_cols:
+    - "Allowed Amount"
+    - "Paid Amount"
+    - "Claim Status"
+    - "Reason Code"
+    - "Follow-up Required"
+    - "AR Status"
+
+model:
+  type: "xgboost"
+  params:
+    n_estimators: 100
+    learning_rate: 0.1
+    max_depth: 5
+    random_state: ${project.seed}
+
+ranking:
+  weights:
+    risk: 1.0
+    impact: 0.5
+    urgency: 0.5
+  capacity_k: 50

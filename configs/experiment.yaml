@@ -1,0 +1,40 @@
+experiment:
+  name: "EXP_20260213_HASH_ABLATION"
+  seed: 1337
+  synth_seeds: [11, 22, 33, 44, 55]
+
+data:
+  raw_path: "synthera835_claims_2026-02-12.csv"
+  processed_path: "data/processed/features.parquet"
+  split_path: "splits/split_v1.json"
+  n_records: 100000
+  test_size: 0.20
+  val_size: 0.10
+
+preprocessing:
+  encoding_method: "hashing" # options: hashing, registry, target
+  hash_buckets:
+    provider: 100000
+    procedure: 10000
+    insurance: 500
+  leakage_cols:
+    - "Allowed Amount"
+    - "Paid Amount"
+    - "Claim Status"
+    - "Reason Code"
+    - "Follow-up Required"
+    - "AR Status"
+    - "Outcome" # Target, dropped from X
+  
+simulation:
+  daily_capacity: 50
+  aging_threshold_days: 30
+  weights:
+    risk: 0.6
+    impact: 0.3
+    urgency: 0.1
+
+modeling:
+  baseline: "logistic_regression"
+  strong: "xgboost"
+  tuning_trials: 30

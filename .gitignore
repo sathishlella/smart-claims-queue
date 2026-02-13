@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Data
+data/
+*.csv
+*.parquet
+*.json
+!reports/exp_scientific/simulation_stats.json
+!reports/exp_scientific/evaluation_results.json
+!schemas/claims_schema.json
+
+# Models
+models/
+*.joblib
+*.pkl
+
+# LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.pdf
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log

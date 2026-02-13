@@ -1,0 +1,50 @@
+{
+    "type": "object",
+    "properties": {
+        "Claim ID": {
+            "type": [
+                "string",
+                "integer"
+            ]
+        },
+        "Provider ID": {
+            "type": [
+                "string",
+                "integer"
+            ]
+        },
+        "Patient ID": {
+            "type": [
+                "string",
+                "integer"
+            ]
+        },
+        "Date of Service": {
+            "type": "string",
+            "format": "date"
+        },
+        "Billed Amount": {
+            "type": "number",
+            "minimum": 0
+        },
+        "Diagnosis Code": {
+            "type": "string"
+        },
+        "Procedure Code": {
+            "type": "string"
+        },
+        "Insurance Type": {
+            "type": "string"
+        },
+        "Claim Status": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "Claim ID",
+        "Provider ID",
+        "Date of Service",
+        "Billed Amount",
+        "Diagnosis Code"
+    ]
+}
