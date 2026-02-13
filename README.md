@@ -71,3 +71,18 @@ See `manuscript_draft.md` in the root folder for the full text of the "Methods" 
 │   └── preprocessing.py # Features & Hashing
 └── manuscript_draft.md # Final Paper Text
 ```
+
+## ☁️ Deployment
+
+This project is ready for deployment on [Streamlit Community Cloud](https://streamlit.io/cloud).
+
+### Steps to Deploy:
+1.  **Push to GitHub**: Ensure your code is on GitHub (we just did this!).
+2.  **Go to Streamlit Cloud**: Sign in at [share.streamlit.io](https://share.streamlit.io/).
+3.  **New App**: Click the "New App" button.
+4.  **Select Repository**: Choose `smart-claims-queue`.
+5.  **Main File Path**: Enter `dashboard/app.py`.
+6.  **Deploy!**: Click the "Deploy!" button.
+
+The app includes `requirements.txt` and the pre-trained `strong_model.joblib` (which we forced into git), so it will build and run automatically without any manual config.
+

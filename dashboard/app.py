@@ -74,11 +74,12 @@ if page == "Upload Data":
             with st.spinner("Running pipeline..."):
                 try:
                     import subprocess
+                    import sys
                     
                     # 1. Preprocessing
                     st.text("Preprocessing...")
                     cmd_preprocess = [
-                        "python", "src/preprocessing.py",
+                        sys.executable, "src/preprocessing.py",
                         "--input_path", file_path,
                         "--output_path", "data/processed/uploaded_features.parquet"
                     ]
@@ -90,7 +91,7 @@ if page == "Upload Data":
                     # 2. Ranking (Using ranking_v2)
                     st.text("Ranking...")
                     cmd_rank = [
-                        "python", "src/ranking_v2.py",
+                        sys.executable, "src/ranking_v2.py",
                         "--data_path", "data/processed/uploaded_features.parquet",
                         "--model_path", "models/exp_scientific/strong_model.joblib",
                         "--output_path", "reports/priority_queue.csv",
