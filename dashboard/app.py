@@ -175,10 +175,15 @@ if page == "Priority Queue":
         df_view = df_q.head(top_n)
         
         
+        st.markdown("### Worklist Overview (Top N)")
         display_risk_metrics(df_view)
         st.caption(f"Showing top {top_n} claims (5-day worklist at {capacity} claims/day)")
         
-
+        with st.expander("📊 View Full Backlog Statistics (All Claims)"):
+            st.markdown("These are the counts for the **entire dataset**, including claims not in the current worklist.")
+            display_risk_metrics(df_q)
+        
+        
         # Filter top N based on capacity * days? Or just show all?
         # Let's show all but highlight top capacity
         
