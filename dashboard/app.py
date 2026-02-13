@@ -4,6 +4,10 @@ import json
 import os
 import matplotlib.pyplot as plt
 import joblib
+import sys
+
+# Ensure project root is in path for 'src' imports
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
 def display_risk_metrics(df):
